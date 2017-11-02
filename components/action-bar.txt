@@ -1,0 +1,12 @@
+<div class="actions-left">
+    <ul>
+        <li class="like"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Like</li>
+        <li class="reply"><i class="fa fa-reply" aria-hidden="true"></i>Reply</li>
+    </ul>
+</div>
+<div class="actions-right">
+    <ul>
+        <li class="link"><i class="fa fa-link" aria-hidden="true"></i>Link</li>
+        <li class="report"><i class="fa fa-flag-o" aria-hidden="true"></i>Report</li>
+    </ul>
+</div>
