@@ -46,6 +46,8 @@ a {
   margin-top: 20px;
   border-bottom: 1px #dbdbdb solid;
   padding-bottom: 20px; }
+  .comment-reply .comment-content {
+    margin-top: 10px; }
   .comment-reply .comment-timestamp {
     font-size: .8rem; }
 
@@ -166,6 +168,8 @@ h2 {
   line-height: .5; }
   .commenter-info-bar .comment-info-bar-left ul li {
     display: inline; }
+  .commenter-info-bar .comment-info-bar-right {
+    margin-top: -12px; }
 
 .menu-page {
   background: #43cea2;

@@ -65,6 +65,9 @@ a {
   margin-top: 20px;
   border-bottom: 1px $grey-lighter solid;
   padding-bottom: 20px;
+  .comment-content {
+    margin-top: 10px;
+  }
   .comment-timestamp {
     font-size: .8rem;
   }
@@ -231,6 +234,9 @@ h2 {
     li {
       display: inline;
     }
+  }
+  .comment-info-bar-right {
+    margin-top: -12px;
   }
 }
 
