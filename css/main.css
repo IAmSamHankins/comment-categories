@@ -18,7 +18,6 @@ a {
     resize: none;
     margin-bottom: 10px;
     margin-top: 10px;
-    font-family: 'Droid Serif', serif;
     height: 120px; }
     .comments-section textarea:focus {
       border: 1px solid #2574A9; }
@@ -134,12 +133,7 @@ h2 {
   font-size: 1.1em; }
 
 .comment .comment-content {
-  margin-top: 10px;
-  font-family: 'Droid Serif', serif;
   font-size: 1rem; }
-
-.featured-comment .comment-content {
-  font-family: 'Droid Serif', serif; }
 
 .comment-actions {
   margin-top: 10px;
@@ -168,7 +162,8 @@ h2 {
   display: flex;
   display: -webkit-flex;
   justify-content: space-between;
-  -webkit-justify-content: space-between; }
+  -webkit-justify-content: space-between;
+  line-height: .5; }
   .commenter-info-bar .comment-info-bar-left ul li {
     display: inline; }
 
@@ -215,5 +210,14 @@ h2 {
   margin-left: 7px;
   border-radius: 2px;
   font-size: .75rem; }
+
+.category-line {
+  margin-top: 8px;
+  margin-bottom: 10px; }
+  .category-line h5 {
+    color: #616161;
+    font-size: 12px; }
+    .category-line h5 .category-detail {
+      font-weight: 600; }
 
 /*# sourceMappingURL=main.css.map */
