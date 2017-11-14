@@ -52,12 +52,14 @@ a {
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
-  .current-account {
-    align-self: flex-start;
-    #account-name {
-      font-weight: 600;
-    }
+}
+
+.current-account {
+  align-self: flex-start;
+  #account-name {
+    font-weight: 600;
   }
+  margin-bottom: 10px;
 }
 
 .comment-reply {
@@ -183,6 +185,7 @@ h2 {
 .comment .comment-content {
   // font-family: 'Droid Serif', serif;
   font-size: 1rem;
+  line-height: 1.2;
 }
 
 .featured-comment .comment-content{
@@ -195,10 +198,12 @@ h2 {
   display:-webkit-flex;
   justify-content: space-between;
   -webkit-justify-content: space-between;
+  color: #37474F;
   ul {
     li {
       display: inline;
       cursor: pointer;
+      font-size: 14px;
       i {
         margin-top: 5px;
         font-size: 12px;
@@ -298,5 +303,46 @@ h2 {
     .category-detail {
       font-weight: 600;
     }
+  }
+}
+
+.category-filters {
+  padding: 10px;
+  background-color: #F5F5F5;
+  button {
+    background-color: #fff;
+    padding: 6px 10px;
+    border-radius: 2px;
+    display: inline-block;
+    font-size: 14px;
+    .comment-counter {
+      background-color: #616161;
+      color: #fff;
+    }
+  }
+  .active {
+    background-color: #0D47A1;
+    color: white;
+    border: 0px;
+  }
+  margin-bottom: 10px;
+}
+
+.category-select {
+  button {
+    border-radius: 2px;
+    padding: 8px 10px;
+    &:hover {
+      background-color: #424242;
+      color: white;
+      cursor: pointer;
+    }
+  }
+}
+
+.category-selection-area {
+  h3 {
+    font-weight: 600;
+    margin-bottom: 5px;
   }
 }
