@@ -340,9 +340,22 @@ h2 {
   }
 }
 
+.active-cat {
+  background-color: #424242;
+  color: white;
+  &:hover {
+    background-color: tomato;
+  }
+}
+
 .category-selection-area {
   h3 {
     font-weight: 600;
     margin-bottom: 5px;
   }
+}
+
+#explain {
+  font-weight: 300;
+  font-size: 14px;
 }

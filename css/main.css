@@ -255,8 +255,18 @@ h2 {
     color: white;
     cursor: pointer; }
 
+.active-cat {
+  background-color: #424242;
+  color: white; }
+  .active-cat:hover {
+    background-color: tomato; }
+
 .category-selection-area h3 {
   font-weight: 600;
   margin-bottom: 5px; }
+
+#explain {
+  font-weight: 300;
+  font-size: 14px; }
 
 /*# sourceMappingURL=main.css.map */
