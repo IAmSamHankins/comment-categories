@@ -16,8 +16,106 @@ const experienceButton = document.getElementById('experience-cat');
 const infoButton = document.getElementById('info-cat');
 const questionButton = document.getElementById('question-cat');
 const commentInputBox = document.getElementById('comment-input');
+let categoriesArray = [];
+
+// Comment Category Functions
+
+let noActiveCat = () => {
+  if (opinionButton.classList.contains('active-cat')) {
+    return false;
+  } else if (experienceButton.classList.contains('active-cat')) {
+    return false;
+  } else if (infoButton.classList.contains('active-cat')) {
+    return false;
+  }
+  else if (questionButton.classList.contains('active-cat')) {
+    return false;
+  }
+  else {
+    return true;
+  }
+}
+
+questionButton.addEventListener('click', () => {
+  if (questionButton.classList.contains('active-cat')) {
+    questionButton.classList.remove('active-cat');
+    let index = categoriesArray.indexOf('question');
+    categoriesArray.splice(index,1);
+    if (noActiveCat()) {
+      commentInputBox.disabled = true;
+      submitButton.disabled = true;
+      commentInputBox.placeholder="Select a comment type above to leave a comment...";
+    }
+  }
+  else {
+    questionButton.classList.add('active-cat');
+    commentInputBox.disabled = false;
+    submitButton.disabled = false;
+    commentInputBox.placeholder="Write your comment here...";
+    categoriesArray.push('question');
+  }
+})
+
+infoButton.addEventListener('click', () => {
+  if (infoButton.classList.contains('active-cat')) {
+    infoButton.classList.remove('active-cat');
+    let index = categoriesArray.indexOf('additional info');
+    categoriesArray.splice(index,1);
+    if (noActiveCat()) {
+      commentInputBox.disabled = true;
+      submitButton.disabled = true;
+      commentInputBox.placeholder="Select a comment type above to leave a comment...";
+    }
+  }
+  else {
+    infoButton.classList.add('active-cat');
+    commentInputBox.disabled = false;
+    submitButton.disabled = false;
+    commentInputBox.placeholder="Write your comment here...";
+    categoriesArray.push('additional info');
+  }
+})
+
+experienceButton.addEventListener('click', () => {
+  if (experienceButton.classList.contains('active-cat')) {
+    experienceButton.classList.remove('active-cat');
+    let index = categoriesArray.indexOf('experience');
+    categoriesArray.splice(index,1);
+    if (noActiveCat()) {
+      commentInputBox.disabled = true;
+      submitButton.disabled = true;
+      commentInputBox.placeholder="Select a comment type above to leave a comment...";
+    }
+  }
+  else {
+    experienceButton.classList.add('active-cat');
+    commentInputBox.disabled = false;
+    submitButton.disabled = false;
+    commentInputBox.placeholder="Write your comment here...";
+    categoriesArray.push('experience');
+  }
+})
 
 
+opinionButton.addEventListener('click', () => {
+  if (opinionButton.classList.contains('active-cat')) {
+    opinionButton.classList.remove('active-cat');
+    let index = categoriesArray.indexOf('opinion');
+    categoriesArray.splice(index,1);
+    if (noActiveCat()) {
+      commentInputBox.disabled = true;
+      submitButton.disabled = true;
+      commentInputBox.placeholder="Select a comment type above to leave a comment...";
+    }
+  }
+  else {
+    opinionButton.classList.add('active-cat');
+    commentInputBox.disabled = false;
+    submitButton.disabled = false;
+    commentInputBox.placeholder="Write your comment here...";
+    categoriesArray.push('opinion');
+  }
+})
 
 submitButton.addEventListener('click', () => {
 
@@ -27,6 +125,7 @@ submitButton.addEventListener('click', () => {
   let commentReadingArea = document.querySelector('.main-comments-area');
   let newComment = document.createElement('div');
   let commentInfoBar = document.createElement('div');
+  let commentCatInfoBar = document.createElement('div');
   let commentContent = document.createElement('div');
   let commentActions = document.createElement('div');
   let commentInfoBarContent = document.createElement('ul');
@@ -34,16 +133,19 @@ submitButton.addEventListener('click', () => {
 
   newComment.classList.add('comment');
 
+  commentCatInfoBar.classList.add('category-line');
   commentInfoBar.classList.add('commenter-info-bar');
   commentContent.classList.add('comment-content');
   commentActions.classList.add('comment-actions');
   commentInput.innerHTML = document.querySelector('textarea').value;
 
+  commentCatInfoBar.appendChild(createCommentCatLine(categoriesArray));
   commentInfoBar.appendChild(createCommentInfoBar(userName, timeStamp));
   commentContent.appendChild(commentInput);
 
   newComment.prepend(commentActions);
   newComment.prepend(commentContent);
+  newComment.prepend(commentCatInfoBar);
   newComment.prepend(commentInfoBar);
 
   commentReadingArea.prepend(newComment);
@@ -56,6 +158,27 @@ submitButton.addEventListener('click', () => {
     document.querySelector('.all-comments-tab-content').style.display="block";
   }
 });
+
+let categoryString = "";
+
+function createCommentCatLine(categoriesArray) {
+  let commentCatLine = document.createElement('h5');
+  let commentCats = document.createElement('span');
+  if (categoriesArray.length === 1) {
+      categoryString = categoriesArray[0] + ":";
+  } else if (categoriesArray.length === 2) {
+      categoryString = categoriesArray[0] + " and " + categoriesArray[1] + ":";
+  } else if (categoriesArray.length === 3) {
+    categoryString = categoriesArray[0] + ", " + categoriesArray[1] + " and " + categoriesArray[2] + ":";
+  } else if (categoriesArray.length === 4) {
+    categoryString = categoriesArray[0] + ", " + categoriesArray[1] + ", "+ categoriesArray[2] + " and " + categoriesArray[3] + ":";
+  }
+  commentCats.innerHTML = categoryString;
+  commentCats.classList.add('category-detail');
+  commentCatLine.innerHTML = "Shared this ";
+  commentCatLine.appendChild(commentCats);
+  return commentCatLine;
+}
 
 function createCommentInfoBar(userName, timeStamp) {
   let commentInfoBar = document.createElement('ul');
@@ -148,7 +271,6 @@ commentsTab.addEventListener('click', () => {
 })
 
 allCommentsTab.addEventListener('click', () => {
-  console.log("this is working");
   allCommentsTab.classList.add('is-active');
   featuredCommentsTab.classList.remove('is-active');
   document.querySelector('.featured-comment-tab-content').style.display="none";
@@ -160,87 +282,4 @@ featuredCommentsTab.addEventListener('click', () => {
   allCommentsTab.classList.remove('is-active');
   document.querySelector('.featured-comment-tab-content').style.display="block";
   document.querySelector('.all-comments-tab-content').style.display="none";
-})
-
-let noActiveCat = () => {
-  if (questionButton.classList.contains('active-cat')) {
-    return false;
-  } else if (experienceButton.classList.contains('active-cat')) {
-    return false;
-  } else if (opinionButton.classList.contains('active-cat')) {
-    return false;
-  } else if (infoButton.classList.contains('active-cat')) {
-    return false;
-  } else {
-    return true;
-  }
-}
-
-questionButton.addEventListener('click', () => {
-  if (questionButton.classList.contains('active-cat')) {
-    questionButton.classList.remove('active-cat');
-    if (noActiveCat()) {
-      commentInputBox.disabled = true;
-      submitButton.disabled = true;
-      commentInputBox.placeholder="Select a comment type above to leave a comment...";
-    }
-  }
-  else {
-    questionButton.classList.add('active-cat');
-    commentInputBox.disabled = false;
-    submitButton.disabled = false;
-    commentInputBox.placeholder="Write your comment here...";
-  }
-})
-
-infoButton.addEventListener('click', () => {
-  if (infoButton.classList.contains('active-cat')) {
-    infoButton.classList.remove('active-cat');
-    if (noActiveCat()) {
-      commentInputBox.disabled = true;
-      submitButton.disabled = true;
-      commentInputBox.placeholder="Select a comment type above to leave a comment...";
-    }
-  }
-  else {
-    infoButton.classList.add('active-cat');
-    commentInputBox.disabled = false;
-    submitButton.disabled = false;
-    commentInputBox.placeholder="Write your comment here...";
-  }
-})
-
-experienceButton.addEventListener('click', () => {
-  if (experienceButton.classList.contains('active-cat')) {
-    experienceButton.classList.remove('active-cat');
-    if (noActiveCat()) {
-      commentInputBox.disabled = true;
-      submitButton.disabled = true;
-      commentInputBox.placeholder="Select a comment type above to leave a comment...";
-    }
-  }
-  else {
-    experienceButton.classList.add('active-cat');
-    commentInputBox.disabled = false;
-    submitButton.disabled = false;
-    commentInputBox.placeholder="Write your comment here...";
-  }
-})
-
-
-opinionButton.addEventListener('click', () => {
-  if (opinionButton.classList.contains('active-cat')) {
-    opinionButton.classList.remove('active-cat');
-    if (noActiveCat()) {
-      commentInputBox.disabled = true;
-      submitButton.disabled = true;
-      commentInputBox.placeholder="Select a comment type above to leave a comment...";
-    }
-  }
-  else {
-    opinionButton.classList.add('active-cat');
-    commentInputBox.disabled = false;
-    submitButton.disabled = false;
-    commentInputBox.placeholder="Write your comment here...";
-  }
 })
