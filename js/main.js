@@ -16,7 +16,13 @@ const experienceButton = document.getElementById('experience-cat');
 const infoButton = document.getElementById('info-cat');
 const questionButton = document.getElementById('question-cat');
 const commentInputBox = document.getElementById('comment-input');
+const allFilter = document.getElementById('all-filter');
+const opinionFilter = document.getElementById('opinion-filter');
+const experienceFilter = document.getElementById('experience-filter');
+const infoFilter = document.getElementById('info-filter');
+const questionFilter = document.getElementById('question-filter');
 let categoriesArray = [];
+const allComments = document.getElementsByClassName('comments');
 
 // Comment Category Functions
 
@@ -29,6 +35,22 @@ let noActiveCat = () => {
     return false;
   }
   else if (questionButton.classList.contains('active-cat')) {
+    return false;
+  }
+  else {
+    return true;
+  }
+}
+
+let noActiveFilter = () => {
+  if (opinionFilter.classList.contains('active')) {
+    return false;
+  } else if (experienceFilter.classList.contains('active')) {
+    return false;
+  } else if (infoFilter.classList.contains('active')) {
+    return false;
+  }
+  else if (questionFilter.classList.contains('active')) {
     return false;
   }
   else {
@@ -101,6 +123,8 @@ opinionButton.addEventListener('click', () => {
   }
 })
 
+// Comment Box Functions
+
 function clearCommentBox() {
   commentInputBox.disabled = true;
   submitButton.disabled = true;
@@ -112,6 +136,8 @@ function openCommentBox() {
   submitButton.disabled = false;
   commentInputBox.placeholder="Write your comment here...";
 }
+
+// Submit Box Functions
 
 submitButton.addEventListener('click', () => {
 
@@ -216,6 +242,7 @@ function loadDoc() {
 }
 
 
+
 if (featuredAction) {
   featuredAction.addEventListener('click', () => {
     if (document.getElementById('featured-action').innerHTML === "Collapse") {
@@ -284,3 +311,104 @@ featuredCommentsTab.addEventListener('click', () => {
   document.querySelector('.featured-comment-tab-content').style.display="block";
   document.querySelector('.all-comments-tab-content').style.display="none";
 })
+
+// Filtering Functions
+
+allFilter.addEventListener('click', () => {
+  resetFilters();
+})
+
+opinionFilter.addEventListener('click', () => {
+  allFilter.classList.remove('active');
+  if (opinionFilter.classList.contains('active')) {
+    opinionFilter.classList.remove('active');
+    toggle('opinion', "none");
+    if(noActiveFilter()){
+      resetFilters();
+    }
+  }
+  else {
+    if (noActiveFilter()) {
+      toggle('comment', "none");
+    }
+    opinionFilter.classList.add('active');
+    toggle('comment-reply', "none");
+    toggle('opinion', "block");
+  }
+})
+
+infoFilter.addEventListener('click', () => {
+  allFilter.classList.remove('active');
+  if (infoFilter.classList.contains('active')) {
+    infoFilter.classList.remove('active');
+    toggle('info', "none");
+    if(noActiveFilter()){
+      resetFilters();
+    }
+  }
+  else {
+    if (noActiveFilter()) {
+      toggle('comment', "none");
+    }
+    infoFilter.classList.add('active');
+    toggle('comment-reply', "none");
+    toggle('info', "block");
+  }
+})
+
+questionFilter.addEventListener('click', () => {
+  allFilter.classList.remove('active');
+  if (questionFilter.classList.contains('active')) {
+    questionFilter.classList.remove('active');
+    toggle('question', "none");
+    if(noActiveFilter()){
+      resetFilters();
+    }
+  }
+  else {
+    if (noActiveFilter()) {
+      toggle('comment', "none");
+    }
+    questionFilter.classList.add('active');
+    toggle('comment-reply', "none");
+    toggle('question', "block");
+  }
+})
+
+experienceFilter.addEventListener('click', () => {
+  allFilter.classList.remove('active');
+  if (experienceFilter.classList.contains('active')) {
+    experienceFilter.classList.remove('active');
+    toggle('experience', "none");
+    if(noActiveFilter()){
+      resetFilters();
+    }
+  }
+  else {
+    if (noActiveFilter()) {
+      toggle('comment', "none");
+    }
+    experienceFilter.classList.add('active');
+    toggle('comment-reply', "none");
+    toggle('experience', "block");
+  }
+})
+
+function resetFilters() {
+  allFilter.classList.add('active');
+  opinionFilter.classList.remove('active');
+  questionFilter.classList.remove('active');
+  experienceFilter.classList.remove('active');
+  infoFilter.classList.remove('active');
+  toggle('comment', "block");
+  toggle('comment-reply', "block");
+}
+
+// Toggle Function
+
+function toggle(className, displayState){
+    var elements = document.getElementsByClassName(className)
+    for (var i = 0; i < elements.length; i++){
+        elements[i].style.display = displayState;
+    }
+}
