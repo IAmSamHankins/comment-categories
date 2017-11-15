@@ -22,6 +22,7 @@ const experienceFilter = document.getElementById('experience-filter');
 const infoFilter = document.getElementById('info-filter');
 const questionFilter = document.getElementById('question-filter');
 let categoriesArray = [];
+let categoryClasses = [];
 const allComments = document.getElementsByClassName('comments');
 
 // Comment Category Functions
@@ -71,6 +72,7 @@ questionButton.addEventListener('click', () => {
     questionButton.classList.add('active-cat');
     openCommentBox();
     categoriesArray.push('question');
+    categoryClasses.push('question');
   }
 })
 
@@ -87,6 +89,7 @@ infoButton.addEventListener('click', () => {
     infoButton.classList.add('active-cat');
     openCommentBox();
     categoriesArray.push('additional info');
+    categoryClasses.push('info');
   }
 })
 
@@ -103,6 +106,7 @@ experienceButton.addEventListener('click', () => {
     experienceButton.classList.add('active-cat');
     openCommentBox();
     categoriesArray.push('experience');
+    categoryClasses.push('experience');
   }
 })
 
@@ -120,6 +124,7 @@ opinionButton.addEventListener('click', () => {
     opinionButton.classList.add('active-cat');
     openCommentBox();
     categoriesArray.push('opinion');
+    categoryClasses.push('opinion');
   }
 })
 
@@ -154,6 +159,10 @@ submitButton.addEventListener('click', () => {
 
 
   newComment.classList.add('comment');
+
+  for (var i = 0; i < categoryClasses.length; i++) {
+    newComment.classList.add(categoryClasses[i]);
+  }
 
   commentCatInfoBar.classList.add('category-line');
   commentInfoBar.classList.add('commenter-info-bar');
