@@ -187,7 +187,8 @@ submitButton.addEventListener('click', () => {
   questionButton.classList.remove('active-cat');
   noActiveCat();
   clearCommentBox();
-
+  categoriesArray = [];
+  
   if (allCommentsTab) {
     allCommentsTab.classList.add('is-active');
     featuredCommentsTab.classList.remove('is-active');
